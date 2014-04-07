@@ -44,3 +44,13 @@ end
 %%
 %gain coeffs for each track determined seperately for all channels of target mix
 gain_coeffs = leastSqGain(trgtMix, trgtMix_info.NumChannels, X);
+
+%% 
+%My MIX evaluation
+myMixTrgt = myMix(X,2,60);
+
+%Evaluation from myMix - 
+gain_coeffs_eval = leastSqGain(myMixTrgt, trgtMix_info.NumChannels, X);
+
+% Get indivdual gain for tracks and panning
+[gains, PL, PR, Lpan_rad, Rpan_rad] = panEstimate(gain_coeffs_eval);
